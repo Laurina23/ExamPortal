@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration</title>
+    <link rel="stylesheet" href="regstyle.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Registration</h2>
+        
+        <div class="flex-container">
+            <div class="left-column">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" placeholder="Enter your ID">
+                </div>
+    
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+    
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Enter your age">
+                </div>
+    
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="radio-group">
+                        <input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="female"> Female
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="address">College Address:</label>
+                    <textarea id="address" placeholder="Enter your college address"></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="branch">Branch:</label>
+                    <select id="branch">
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Electronics</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="form-group">
+                    <label>Technical Skills:</label>
+                    <div class="skills">
+                        <input type="checkbox" name="skills" value="c"> C
+                        <input type="checkbox" name="skills" value="java"> Java
+                        <input type="checkbox" name="skills" value="python"> Python
+                        <input type="checkbox" name="skills" value="jsp"> JSP
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="other-skills">Other Technical Skills:</label>
+                    <textarea id="other-skills" placeholder="Enter any other technical skills"></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="resume">Upload Resume:</label>
+                    <input type="file" id="resume">
+                </div>
+    
+                <div class="form-group">
+                    <label for="photo">Upload Photo:</label>
+                    <input type="file" id="photo">
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <button class="btn-primary">Submit</button>
+            <button class="btn-secondary">Reset</button>
+        </div>
+    </div>
+</body>
+</html>
