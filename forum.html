@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: whitesmoke;
+            color: #333;
+            font-size: 1.2rem; 
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #e0f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .header {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-size: 2rem; 
+        }
+
+        .query-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .query-textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            resize: vertical;
+            height: 80px; 
+        }
+
+        .post-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .post-button {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 16px; 
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .post-button:hover {
+            background-color: #00b33c;
+        }
+
+        .post-button:active {
+            background-color: #28a745;
+        }
+
+        .author-name {
+            font-size: 0.9rem; 
+            color: #333;
+        }
+
+        .reply-section {
+            margin-top: 15px;
+        }
+
+        .reply-checkbox {
+            display: none;
+        }
+
+        .reply-button {
+            background-color: #f4a261;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .reply-button:hover {
+            background-color: #e76f51;
+        }
+
+        .reply-button:active {
+            background-color: #f4a261;
+        }
+
+        .reply-textarea {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            resize: vertical;
+            height: 80px;
+            margin-top: 8px;
+        }
+
+        /* Show reply textarea when checkbox is checked */
+        .reply-checkbox:checked + .reply-textarea {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .post-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .post-button {
+                width: 100%;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">OpenForum</div>
+
+    <div class="query-section">
+        <textarea class="query-textarea" placeholder="Enter your query here..."></textarea>
+        
+        <div class="post-section">
+            <button class="post-button">Post</button>
+            <span class="author-name">Posted by: User1</span>
+        </div>
+
+        <div class="reply-section">
+            <!-- Hidden checkbox to trigger reply textarea visibility -->
+            <input type="checkbox" id="reply-toggle" class="reply-checkbox">
+            <label for="reply-toggle" class="reply-button">Reply</label>
+            <textarea class="reply-textarea" placeholder="Enter your reply here..."></textarea>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Exam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: whitesmoke;
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #e0f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .header {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .tab-button:hover {
+            background-color: #00b33c;
+        }
+
+        .tab-button:active {
+            background-color: #28a745;
+        }
+
+        .exam-rules {
+            margin-top: 20px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Calibri, sans-serif;
+            font-size: 0.9rem; 
+        }
+
+        .exam-rules ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .subject-dropdown {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .start-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .start-button:hover {
+            background-color: #00b33c;
+        }
+
+        .start-button:active {
+            background-color: #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .tabs {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .tab-button {
+                width: 100%;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">Online Exam</div>
+
+    <div class="tabs">
+        <button class="tab-button">General Exam</button>
+        <button class="tab-button">Timed Exam</button>
+        <button class="tab-button">Practice Test</button>
+    </div>
+
+    <div class="exam-rules">
+        <h3>Exam Rules</h3>
+        <ul>
+            <li>Ensure a stable internet connection during the exam.</li>
+            <li>Follow all instructions as provided in the exam.</li>
+            <li>Once you start, the exam cannot be paused.</li>
+            <li>No external assistance is allowed during the exam.</li>
+        </ul>
+    </div>
+
+    <select class="subject-dropdown">
+        <option value="" disabled selected>Select Subject</option>
+        <option value="math">Mathematics</option>
+        <option value="physics">Physics</option>
+        <option value="chemistry">Chemistry</option>
+        <option value="biology">Biology</option>
+    </select>
+
+    <select class="subject-dropdown">
+        <option value="" disabled selected>Select Exam</option>
+        <option value="exam1">Mathematics - 1</option>
+        <option value="exam2">Physics - 1</option>
+        <option value="exam3">Chemistry - 1</option>
+        <option value="exam4">Biology - 1</option>
+    </select>
+
+    <button class="start-button">Start Exam</button>
+</div>
+
+</body>
+</html>

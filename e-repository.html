@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Repository</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: whitesmoke;
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #e0f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .upload-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-section button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .upload-section button:hover {
+            background-color: #00b33c;
+        }
+
+        .upload-section button:active {
+            background-color: #28a745;
+        }
+
+        .file-list {
+            margin-top: 10px;
+        }
+
+        .file-card {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .file-uploader {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .download-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .download-button:hover {
+            background-color: #00b33c;
+        }
+
+        .download-button:active {
+            background-color: #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .file-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .download-button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">E-Repository</div>
+
+    <div class="upload-section">
+        <button>Upload</button>
+    </div>
+
+    <div class="file-list">
+        <div class="file-card">
+            <div class="file-info">
+                <span class="file-uploader">Uploaded by xyzuser</span>
+                <span class="file-name">File1.pdf</span>
+            </div>
+            <button class="download-button">Download</button>
+        </div>
+
+        <div class="file-card">
+            <div class="file-info">
+                <span class="file-name">File2.docx</span>
+            </div>
+            <button class="download-button">Download</button>
+        </div>
+
+        <div class="file-card">
+            <div class="file-info">
+                <span class="file-name">File3.jpg</span>
+            </div>
+            <button class="download-button">Download</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
