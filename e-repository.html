@@ -1,174 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Repository</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repository Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background: whitesmoke;
-            color: #333;
-            font-size: 1.2rem;
-            line-height: 1.5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #638a91;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        .container {
-            background-color: #e0f3ff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 600px;
-            margin: 2rem auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+    .content {
+      flex: 1;
+    }
 
-        .header {
-            text-align: center;
-            color: #1a73e8;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
+    .container {
+      display: flex;
+      height: calc(100vh - 60px - 150px);
+      padding: 20px;
+      gap: 20px;
+    }
 
-        .upload-section {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+    
+    .navbar {
+      background-color: #000;
+      width: 100%;
+      padding: 10px 0;
+      text-align: center;
+    }
 
-        .upload-section button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
 
-        .upload-section button:hover {
-            background-color: #00b33c;
-        }
+    .navbar ul li {
+      margin: 0 15px;
+    }
 
-        .upload-section button:active {
-            background-color: #28a745;
-        }
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
 
-        .file-list {
-            margin-top: 10px;
-        }
+    .navbar ul li a:hover {
+      text-decoration: underline;
+      color: #1976d2;
+    }
 
-        .file-card {
-            background-color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .navbar .logo a {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      margin-right: auto;
+      margin-left: 20px;
+    }
 
-        .file-info {
-            display: flex;
-            flex-direction: column;
-        }
+    
+    .uploaded-files {
+      flex: 2;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      padding: 20px;
+    }
 
-        .file-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #333;
-        }
+    .uploaded-files::-webkit-scrollbar {
+      width: 8px;
+    }
 
-        .file-uploader {
-            font-size: 0.9rem;
-            color: #555;
-        }
+    .uploaded-files::-webkit-scrollbar-thumb {
+      background: #292ba3;
+      border-radius: 5px;
+    }
 
-        .download-button {
-            background-color: #007bff;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+    
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #f1f1f1;
+      padding: 8px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
 
-        .download-button:hover {
-            background-color: #00b33c;
-        }
+    .search-bar input {
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      margin-left: 10px;
+      width: 100%;
+      padding: 8px;
+      outline: none;
+      color: #333;
+    }
 
-        .download-button:active {
-            background-color: #28a745;
-        }
+    .search-bar input::placeholder {
+      color: #888;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
+    .search-bar i {
+      color: #888;
+      font-size: 20px;
+    }
 
-            .file-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+    .file {
+      background-color: #f9f9f9;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-            .download-button {
-                width: 100%;
-                margin-top: 10px;
-            }
-        }
-    </style>
+    .file:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .file h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .file p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .file .like-button,
+    .file .download-button {
+      background-color: #af6ee8;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .file .like-button:hover,
+    .file .download-button:hover {
+      background-color: #7b1381;
+    }
+
+    
+    .upload-section {
+      flex: 1;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .upload-section h2 {
+      font-size: 24px;
+      color: #7f45b1;
+      margin-bottom: 15px;
+    }
+
+    .upload-section input,
+    .upload-section textarea {
+      width: 100%;
+      font-size: 18px;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: none;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-section button {
+      background: #af6ee8;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    .upload-section button:hover {
+      background: #7b1381;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      font-size: 14px;  
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    .footer-links li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 16px;  
+    }
+
+    .footer-links li a:hover {
+      color: #007BFF;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .footer-icons a {
+      color: #fff;
+      font-size: 20px; 
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: #007BFF;
+    }
+
+    .contact-info p {
+      margin: 5px 0;
+      color: #ccc;
+      font-size: 14px; 
+    }
+  </style>
 </head>
 <body>
+  
+  <div class="navbar">
+    <div class="logo">
+      <a href="#">EduAssess</a>
+    </div>
+    <ul>
+      <li><a href="MyWall.html">My Wall</a></li>
+      <li><a href="e-repository.html">E-Repository</a></li>
+      <li><a href="forum.html">Open Forum</a></li>
+      <li><a href="examHome.html">E-Exam</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
 
-<div class="container">
-    <div class="header">E-Repository</div>
+  <div class="container">
+    
+    <div class="uploaded-files">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search Repository...">
+      </div>
+      <div class="file">
+        <h3>Sample File 1</h3>
+        <p>Uploaded by: User1</p>
+        <button class="download-button">Download</button>
+      </div>
+    </div>
 
     <div class="upload-section">
-        <button>Upload</button>
+      <h2>Upload Your File</h2>
+      <input type="text" placeholder="Enter file name..." id="file-name">
+      <textarea placeholder="File description..."></textarea>
+      <input type="file" accept="*">
+      <button>Upload File</button>
     </div>
+  </div>
 
-    <div class="file-list">
-        <div class="file-card">
-            <div class="file-info">
-                <span class="file-uploader">Uploaded by xyzuser</span>
-                <span class="file-name">File1.pdf</span>
-            </div>
-            <button class="download-button">Download</button>
-        </div>
-
-        <div class="file-card">
-            <div class="file-info">
-                <span class="file-name">File2.docx</span>
-            </div>
-            <button class="download-button">Download</button>
-        </div>
-
-        <div class="file-card">
-            <div class="file-info">
-                <span class="file-name">File3.jpg</span>
-            </div>
-            <button class="download-button">Download</button>
-        </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+      <div class="footer-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="contact-info">
+        <p>Contact Us: support@eduassess.com | +91-993413903</p>
+        <p>© 2024 EduAssess. All rights reserved.</p>
+      </div>
     </div>
-</div>
+  </footer>
 
 </body>
 </html>
