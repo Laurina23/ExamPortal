@@ -6,7 +6,6 @@
   <title>Query Page</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
-    
     * {
       margin: 0;
       padding: 0;
@@ -33,7 +32,6 @@
       gap: 20px;
     }
 
-    /* Navbar Styles */
     .navbar {
       background-color: #000;
       width: 100%;
@@ -73,7 +71,7 @@
       margin-left: 20px;
     }
 
-    
+
     .queries {
       flex: 2;
       background-color: #ffffff;
@@ -108,6 +106,7 @@
 
     .query p {
       margin: 0;
+      font-size: 18px;  
     }
 
     .reply-section {
@@ -122,6 +121,7 @@
       padding: 10px;
       background: #f0f0f0;
       border-radius: 5px;
+      font-size: 16px;  
     }
 
     .reply-form textarea {
@@ -133,6 +133,7 @@
       border-radius: 5px;
       resize: none;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 16px; 
     }
 
     .reply-form button {
@@ -144,10 +145,11 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.3s;
+      font-size: 16px; 
     }
 
     .reply-form button:hover {
-      background: #af6ee8;
+      background: #7b1381;
     }
 
     .reply-button {
@@ -159,7 +161,9 @@
       cursor: pointer;
       margin-top: 10px;
       transition: background 0.3s ease;
-    }
+      font-size: 16px;
+    }  
+
     .submit-button {
       background-color: #af6ee8;
       color: white;
@@ -169,18 +173,18 @@
       cursor: pointer;
       margin-top: 10px;
       transition: background 0.3s ease;
-  
+      font-size: 16px;  
     }
+
     .submit-button:hover {
-        background-color: #7b1381;
-        transform: scale(1.05);
+      background-color: #7b1381;
+      transform: scale(1.05);
     }
 
     .reply-button:hover {
       background-color: #7b1381;
     }
 
-    
     .post-query {
       flex: 1;
       background-color: #ffffff;
@@ -192,6 +196,7 @@
     .post-query h1 {
       margin-bottom: 15px;
       color: #7f45b1;
+      font-size: 24px;  
     }
 
     .post-query textarea {
@@ -203,14 +208,13 @@
       border-radius: 8px;
       resize: none;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 16px;  
     }
 
     .post-query input[type="file"] {
       margin-bottom: 15px;
       display: block;
     }
-    
-    
 
     .post-query button {
       background: #af6ee8;
@@ -219,7 +223,7 @@
       padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 16px;  
       transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
@@ -235,7 +239,7 @@
       text-align: center;
       padding: 10px 0;
       width: 100%;
-      font-size: 14px;
+      font-size: 14px;  
     }
 
     .footer-content {
@@ -255,6 +259,7 @@
       color: #fff;
       text-decoration: none;
       transition: color 0.3s ease;
+      font-size: 16px;  
     }
 
     .footer-links li a:hover {
@@ -270,7 +275,7 @@
 
     .footer-icons a {
       color: #fff;
-      font-size: 20px;
+      font-size: 20px;  
       text-decoration: none;
       transition: color 0.3s ease;
     }
@@ -282,6 +287,7 @@
     .contact-info p {
       margin: 5px 0;
       color: #ccc;
+      font-size: 14px; 
     }
   </style>
 </head>
@@ -296,51 +302,52 @@
       <li><a href="e-repository.html">E-Repository</a></li>
       <li><a href="forum.html">Open Forum</a></li>
       <li><a href="examHome.html">E-Exam</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="logout.html">Log Out</a></li>
     </ul>
   </div>
 
-  <div class="container">
-    
-    <div class="queries">
-      <div class="query">
-        <p><strong>User1:</strong> How can I center a div using CSS?</p>
-        <button class="reply-button" onclick="toggleReply(this)">Reply</button>
-        <div class="reply-section">
-          <div class="reply">
-            <p><strong>User2:</strong> You can use `display: flex` and `justify-content: center`.</p>
+  <div class="content">
+    <div class="container">
+      <div class="queries">
+        <div class="query">
+          <p><strong>User1:</strong> How to center a div?</p>
+          <button class="reply-button" onclick="toggleReply(this)">Reply</button>
+          <div class="reply-section">
+            <div class="reply">
+              <p><strong>User2:</strong> You can use `display: flex` and `justify-content: center`.</p>
+            </div>
+            <div class="reply">
+              <p><strong>User3:</strong> Another option is to use `margin: auto` with fixed width/height.</p>
+            </div>
+            <div class="reply-form">
+              <textarea placeholder="Write a reply..."></textarea>
+              <button class="submit-button" type="submit">Submit Reply</button>
+            </div>
           </div>
-          <div class="reply">
-            <p><strong>User3:</strong> Another option is to use `margin: auto` with fixed width/height.</p>
-          </div>
-          <div class="reply-form">
-            <textarea placeholder="Write a reply..."></textarea>
-            <button class="submit-button" type="submit">Submit Reply</button>
+        </div>
+        <div class="query">
+          <p><strong>User4:</strong> How can I learn JAVA?</p>
+          <button class="reply-button" onclick="toggleReply(this)">Reply</button>
+          <div class="reply-section">
+            <div class="reply">
+              <p><strong>User5:</strong> You can watch code with harry youtube videos.</p>
+            </div>
+            <div class="reply">
+              <p><strong>User6:</strong> Resources of W3 schools are really nice.</p>
+            </div>
+            <div class="reply-form">
+              <textarea placeholder="Write a reply..."></textarea>
+              <button class="submit-button" type="submit">Submit Reply</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="query">
-        <p><strong>User4:</strong> How can I learn JAVA?</p>
-        <button class="reply-button" onclick="toggleReply(this)">Reply</button>
-        <div class="reply-section">
-          <div class="reply">
-            <p><strong>User5:</strong> You can watch code with harry youtube videos.</p>
-          </div>
-          <div class="reply">
-            <p><strong>User6:</strong> Resources of W3 schools are really nice.</p>
-          </div>
-          <div class="reply-form">
-            <textarea placeholder="Write a reply..."></textarea>
-            <button class="submit-button" type="submit">Submit Reply</button>
-          </div>
-        </div>
+      <div class="post-query">
+        <h1>Post Your Query</h1>
+        <textarea placeholder="Write your query here..."></textarea>
+        <input type="file" accept="image/*">
+        <button>Post Query</button>
       </div>
-    </div>
-    <div class="post-query">
-      <h1>Post Your Query</h1>
-      <textarea placeholder="Write your query here..."></textarea>
-      <input type="file" accept="image/*">
-      <button>Post Query</button>
     </div>
   </div>
 
@@ -355,7 +362,6 @@
     }
   </script>
 
-  
   <footer class="footer">
     <div class="footer-content">
       <ul class="footer-links">
