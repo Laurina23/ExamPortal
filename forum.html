@@ -71,7 +71,6 @@
       margin-left: 20px;
     }
 
-
     .queries {
       flex: 2;
       background-color: #ffffff;
@@ -231,7 +230,20 @@
       background: #7b1381;
       transform: scale(1.05);
     }
+    .edit-button {
+      background-color: red;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      border: none;
+      transition: background 0.3s ease;
+    }
 
+    .edit-button:hover {
+      background-color: darkred;
+    }
     /* Footer */
     .footer {
       background-color: #000;
@@ -311,96 +323,119 @@
   
 </head>
 <body>
-  
-  <div class="navbar">
-    <div class="logo">
-      <a href="homepage.html">EduAssess</a>
-    </div>
-    <ul>
-      <li><a href="MyWall.html">My Wall</a></li>
-      <li><a href="e-repository.html">E-Repository</a></li>
-      <li><a href="forum.html">Open Forum</a></li>
-      <li><a href="examHome.html">E-Exam</a></li>
-      <li><a href="logout.html">Logout</a></li>
-    </ul>
-  </div>
-
-  <div class="content">
-    <div class="container">
-      <div class="queries">
-        <div class="query">
-          <p><strong>User1:</strong> How to center a div?</p>
-          <button class="reply-button" onclick="toggleReply(this)">Reply</button>
-          <div class="reply-section">
-            <div class="reply">
-              <p><strong>User2:</strong> You can use `display: flex` and `justify-content: center`.</p>
-            </div>
-            <div class="reply">
-              <p><strong>User3:</strong> Another option is to use `margin: auto` with fixed width/height.</p>
-            </div>
-            <div class="reply-form">
-              <textarea placeholder="Write a reply..."></textarea>
-              <button class="submit-button" type="submit">Submit Reply</button>
-            </div>
-          </div>
-        </div>
-        <div class="query">
-          <p><strong>User4:</strong> How can I learn JAVA?</p>
-          <button class="reply-button" onclick="toggleReply(this)">Reply</button>
-          <div class="reply-section">
-            <div class="reply">
-              <p><strong>User5:</strong> You can watch code with harry youtube videos.</p>
-            </div>
-            <div class="reply">
-              <p><strong>User6:</strong> Resources of W3 schools are really nice.</p>
-            </div>
-            <div class="reply-form">
-              <textarea placeholder="Write a reply..."></textarea>
-              <button class="submit-button" type="submit">Submit Reply</button>
-            </div>
-          </div>
-        </div>
+    <div class="navbar">
+      <div class="logo">
+        <a href="homepage.html">EduAssess</a>
       </div>
-      <div class="post-query">
-        <h1>Post Your Query</h1>
-        <textarea placeholder="Write your query here..."></textarea>
-        <input type="file" accept="image/*">
-        <button>Post Query</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function toggleReply(button) {
-      const replySection = button.nextElementSibling;
-      if (replySection.style.display === "block") {
-        replySection.style.display = "none";
-      } else {
-        replySection.style.display = "block";
-      }
-    }
-  </script>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <ul class="footer-links">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
+      <ul>
+        <li><a href="MyWall.html">My Wall</a></li>
+        <li><a href="e-repository.html">E-Repository</a></li>
+        <li><a href="forum.html">Open Forum</a></li>
+        <li><a href="examHome.html">E-Exam</a></li>
+        <li><a href="logout.html">Logout</a></li>
       </ul>
-      <div class="footer-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-      <div class="contact-info">
-        <p>Contact Us: support@eduassess.com | +91-993413903</p>
-        <p>© 2024 EduAssess. All rights reserved.</p>
+    </div>
+  
+    <div class="content">
+      <div class="container">
+        <div class="queries">
+          <div class="query">
+            <p><strong>User1:</strong> How to center a div?</p>
+            <button class="reply-button" onclick="toggleReply(this)">Reply</button>
+            <div class="reply-section">
+              <div class="reply">
+                <p><strong>User2:</strong> You can use `display: flex` and `justify-content: center`.</p>
+                <button class="edit-button" onclick="editReply(this)">Edit</button>
+              </div>
+              <div class="reply">
+                <p><strong>User3:</strong> Another option is to use `margin: auto` with fixed width/height.</p>
+                <button class="edit-button" onclick="editReply(this)">Edit</button>
+              </div>
+              <div class="reply-form">
+                <textarea placeholder="Write a reply..."></textarea>
+                <button class="submit-button" type="button" onclick="submitReply(this)">Submit Reply</button>
+              </div>
+            </div>
+          </div>
+          <!-- Other queries -->
+        </div>
+        <div class="post-query">
+          <h1>Post Your Query</h1>
+          <textarea placeholder="Write your query here..."></textarea>
+          <input type="file" name="query-image" />
+          <button type="submit">Post Query</button>
+        </div>
       </div>
     </div>
-  </footer>
+  
+    <script>
+      function toggleReply(button) {
+        const replySection = button.nextElementSibling;
+        replySection.style.display = replySection.style.display === 'block' ? 'none' : 'block';
+      }
+  
+      function submitReply(button) {
+        const replyText = button.previousElementSibling.value;
+        if (replyText.trim()) {
+          const newReply = document.createElement('div');
+          newReply.classList.add('reply');
+          newReply.innerHTML = `<p><strong>You:</strong> ${replyText}</p><button class="edit-button" onclick="editReply(this)">Edit</button>`;
+          button.closest('.reply-section').insertBefore(newReply, button.closest('.reply-form'));
+          button.previousElementSibling.value = '';  // Clear the textarea
+        }
+      }
+  
+      function editReply(button) {
+        const replyDiv = button.closest('.reply');
+        const replyText = replyDiv.querySelector('p').textContent.replace('You: ', '').trim();
+        
+        // Replace the reply text with a textarea
+        const textArea = document.createElement('textarea');
+        textArea.value = replyText;
+        replyDiv.querySelector('p').replaceWith(textArea);
+        
+        // Change the button to a 'Save' button
+        button.textContent = 'Save';
+        button.onclick = function() {
+          saveReply(button, textArea);
+        };
+      }
+  
+      function saveReply(button, textArea) {
+        const newText = textArea.value.trim();
+        if (newText) {
+          const p = document.createElement('p');
+          p.innerHTML = `<strong>You:</strong> ${newText}`;
+          textArea.replaceWith(p);
+  
+          button.textContent = 'Edit';
+          button.onclick = function() {
+            editReply(button);
+          };
+        }
+      }
+    </script>
+        </div>
+        <footer class="footer">
+          <div class="footer-content">
+            <ul class="footer-links">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+            <div class="footer-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="contact-info">
+              <p>EduAssess, 1234 Edu St., Learning City, LC</p>
+              <p>Phone: (123) 456-7890</p>
+              <p>Email: contact@eduassess.com</p>
+            </div>
+          </div>
+        </footer>
+    
 </body>
 </html>
