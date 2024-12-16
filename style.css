@@ -16,19 +16,23 @@ body {
     background: #333;
     color: white;
     padding: 1rem;
-    text-align: center;
     font-family: 'Helvetica', sans-serif;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .nav-content {
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: 100%;
 }
 
 .nav-content h2 {
-    margin-right: 1rem; 
+    flex-grow: 1; /* Ensures "EduAssess" stays centered */
+    text-align: center;
+    margin-right: 1.5rem;
 }
 
 .search-bar {
@@ -36,7 +40,8 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    width: 250px; 
+    width: 250px;
+    margin-left: auto; /* Pushes the search bar to the right */
 }
 
 .search-bar:focus {
@@ -61,6 +66,7 @@ body {
     padding: 2rem;
     flex-wrap: wrap;
     align-items: center;
+    padding-left: 8rem;
 }
 
 .main-content {
@@ -92,16 +98,20 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 35%;
+    width: 40%;
     max-width: 400px;
     text-align: center;
     align-self: flex-start;
     margin-left: auto;
+    margin-right: 7rem;
 }
 
 .auth-card h1 {
     color: #333;
     margin-bottom: 2rem;
+    margin-top: 0;
+    position: relative; 
+    top: 0;
 }
 
 .form-group {
@@ -155,9 +165,10 @@ button:hover {
 
 .nav-links {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     margin-top: 1rem;
+    margin-left: 27rem;
 }
 
 .nav-card {
@@ -166,7 +177,7 @@ button:hover {
     padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 200px;
+    width: 220px;
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: Arial, sans-serif;
 }
@@ -247,7 +258,18 @@ button:hover {
     color: #bbb;
 }
 
-/* Responsive Design */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; 
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
