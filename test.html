@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            width: 50%;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .quiz-header {
+            margin-bottom: 20px;
+        }
+
+        .quiz-header h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .quiz-header .timer {
+            margin-top: 10px;
+            font-size: 16px;
+            color: red;
+        }
+
+        .question-count {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .question {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .options label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h2>Mathematics Quiz</h2>
+            <p class="timer" id="timer">Time left: 60:00</p>
+            <p class="question-count" id="question-count">Question 1 of 10</p>
+        </div>
+        <div id="question" class="question">What is 2 + 2?</div>
+        <div id="options" class="options">
+            <label><input type="radio" name="option" value="0"> 3</label>
+            <label><input type="radio" name="option" value="1"> 4</label>
+            <label><input type="radio" name="option" value="2"> 5</label>
+            <label><input type="radio" name="option" value="3"> 6</label>
+        </div>
+        <div class="buttons">
+            <button onclick="navigateQuestion(-1)">Previous</button>
+            <button onclick="navigateQuestion(1)">Next</button>
+            <button onclick="submitQuiz()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correct: 1 },
+            { question: "What is 10 - 4?", options: ["5", "6", "7", "8"], correct: 1 },
+            { question: "What is 3 x 3?", options: ["6", "8", "9", "12"], correct: 2 },
+            { question: "What is 8 ÷ 2?", options: ["2", "3", "4", "6"], correct: 2 },
+            { question: "What is the square of 5?", options: ["10", "15", "20", "25"], correct: 3 },
+            { question: "What is the cube of 2?", options: ["6", "8", "12", "16"], correct: 1 },
+            { question: "What is 100 ÷ 10?", options: ["5", "8", "10", "15"], correct: 2 },
+            { question: "What is 15 + 15?", options: ["25", "30", "35", "40"], correct: 1 },
+            { question: "What is 18 - 9?", options: ["6", "8", "9", "12"], correct: 2 },
+            { question: "What is the value of pi (approximately)?", options: ["3", "3.14", "3.2", "3.5"], correct: 1 }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedAnswers = Array(questions.length).fill(null);
+        let timeRemaining = 60 * 60; // 60 minutes in seconds
+
+        function startTimer() {
+            const timerElement = document.getElementById("timer");
+            const interval = setInterval(() => {
+                if (timeRemaining <= 0) {
+                    clearInterval(interval);
+                    submitQuiz();
+                } else {
+                    const minutes = Math.floor(timeRemaining / 60);
+                    const seconds = timeRemaining % 60;
+                    timerElement.textContent = `Time left: ${minutes}:${seconds.toString().padStart(2, "0")}`;
+                    timeRemaining--;
+                }
+            }, 1000);
+        }
+
+        function loadQuestion(index) {
+            document.getElementById("question").textContent = `${index + 1}. ${questions[index].question}`;
+            document.getElementById("options").innerHTML = questions[index].options
+                .map((option, i) => `
+                    <label>
+                        <input type="radio" name="option" value="${i}" ${selectedAnswers[index] === i ? "checked" : ""}>
+                        ${option}
+                    </label>
+                `)
+                .join("");
+            document.getElementById("question-count").textContent = `Question ${index + 1} of ${questions.length}`;
+        }
+
+        function navigateQuestion(direction) {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (selectedOption) {
+                selectedAnswers[currentQuestionIndex] = parseInt(selectedOption.value);
+            }
+            currentQuestionIndex += direction;
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= questions.length) currentQuestionIndex = questions.length - 1;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function submitQuiz() {
+            const score = selectedAnswers.reduce((score, answer, index) => {
+                return score + (answer === questions[index].correct ? 1 : 0);
+            }, 0);
+            document.querySelector(".quiz-container").innerHTML = `
+                <h2>Quiz Completed</h2>
+                <p>Your Score: ${score} / ${questions.length}</p>
+            `;
+        }
+
+        window.onload = () => {
+            loadQuestion(currentQuestionIndex);
+            startTimer();
+        };
+    </script>
+</body>
+</html>

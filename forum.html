@@ -290,6 +290,25 @@
       font-size: 14px; 
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const postQueryButton = document.querySelector(".post-query button");
+      postQueryButton.addEventListener("click", function (event) {
+        const queryTextarea = document.querySelector(".post-query textarea");
+        if (!queryTextarea.value.trim()) {
+          alert("Please write your query before submitting.");
+          event.preventDefault();
+          queryTextarea.focus();
+        }
+      });
+    });
+  
+    function toggleReply(button) {
+      const replySection = button.nextElementSibling;
+      replySection.style.display = replySection.style.display === "block" ? "none" : "block";
+    }
+  </script>
+  
 </head>
 <body>
   

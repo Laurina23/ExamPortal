@@ -264,6 +264,50 @@
       font-size: 14px; 
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const uploadButton = document.querySelector('.upload-section button');
+      const fileNameInput = document.getElementById('file-name');
+      const fileDescriptionInput = document.querySelector('.upload-section textarea');
+      const fileInput = document.querySelector('.upload-section input[type="file"]');
+  
+      uploadButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const fileName = fileNameInput.value.trim();
+        const fileDescription = fileDescriptionInput.value.trim();
+        const file = fileInput.files[0];
+        if (fileName === '') {
+          alert('File name cannot be empty.');
+          fileNameInput.focus();
+          return;
+        }
+        if (fileName.length < 3) {
+          alert('File name must be at least 3 characters long.');
+          fileNameInput.focus();
+          return;
+        }
+        if (fileDescription === '') {
+          alert('File description cannot be empty.');
+          fileDescriptionInput.focus();
+          return;
+        }
+        if (fileDescription.length < 10) {
+          alert('File description must be at least 10 characters long.');
+          fileDescriptionInput.focus();
+          return;
+        }
+        if (!file) {
+          alert('Please choose a file to upload.');
+          fileInput.focus();
+          return;
+        }
+        alert('File uploaded successfully!');
+  
+      });
+    });
+  </script>
+  
 </head>
 <body>
   
