@@ -86,16 +86,6 @@
                 </div>
     
                 <div class="form-group">
-                    <label for="resume">Upload Resume:</label>
-                    <input type="file" id="resume">
-                </div>
-    
-                <div class="form-group">
-                    <label for="photo">Upload Photo:</label>
-                    <input type="file" id="photo">
-                </div>
-    
-                <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" placeholder="Enter your password">
                 </div>
@@ -129,5 +119,70 @@
             </div>
         </div>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC00aEnkaLBbQcssbns-qYh8lQ3PAuDSno",
+            authDomain: "examportal-703fd.firebaseapp.com",
+            projectId: "examportal-703fd",
+            storageBucket: "examportal-703fd.firebasestorage.app",
+            messagingSenderId: "851987579538",
+            appId: "1:851987579538:web:2c7d1b3a2d39f77e4b1c4b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.querySelector(".btn-primary").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const studentId = document.getElementById("id").value;
+    const email = document.getElementById("email").value;
+    const age = document.getElementById("age").value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    const address = document.getElementById("address").value;
+    const branch = document.getElementById("branch").value;
+    const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(skill => skill.value);
+    const otherSkills = document.getElementById("other-skills").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        if (!name || !studentId || !email || !age || !gender || !address || !branch || !password) {
+            alert("Please fill all required fields.");
+            return;
+        }
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "students", studentId), {
+            name,
+            studentId,
+            email,
+            age,
+            gender,
+            address,
+            branch,
+            skills,
+            otherSkills,
+            password
+        });
+
+        alert("Registration successful!");
+        window.location.href = "homepage.html";
+    } catch (error) {
+        alert("Error: " + error.message);
+    }
+});
+
+    </script>
 </body>
 </html>
