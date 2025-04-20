@@ -338,23 +338,25 @@
               </div>
             </div>
           </div>
-          <!-- Other queries -->
         </div>
         <div class="post-query">
           <h1>Post Your Query</h1>
-          <textarea placeholder="Write your query here..."></textarea>
+          <textarea id="post-query-text" placeholder="Write your query here..."></textarea>
           <input type="file" name="query-image" />
-          <button type="submit">Post Query</button>
+          <button type="button" onclick="postQuery()">Post Query</button>
+          <div id="posted-query-section">
+           
+          </div>
         </div>
       </div>
     </div>
-  
+
     <script>
       function toggleReply(button) {
         const replySection = button.nextElementSibling;
         replySection.style.display = replySection.style.display === 'block' ? 'none' : 'block';
       }
-  
+
       function submitReply(button) {
         const replyText = button.previousElementSibling.value;
         if (replyText.trim()) {
@@ -362,26 +364,24 @@
           newReply.classList.add('reply');
           newReply.innerHTML = `<p><strong>You:</strong> ${replyText}</p><button class="edit-button" onclick="editReply(this)">Edit</button>`;
           button.closest('.reply-section').insertBefore(newReply, button.closest('.reply-form'));
-          button.previousElementSibling.value = '';  // Clear the textarea
+          button.previousElementSibling.value = '';  
         }
       }
-  
+
       function editReply(button) {
         const replyDiv = button.closest('.reply');
         const replyText = replyDiv.querySelector('p').textContent.replace('You: ', '').trim();
         
-        // Replace the reply text with a textarea
         const textArea = document.createElement('textarea');
         textArea.value = replyText;
         replyDiv.querySelector('p').replaceWith(textArea);
         
-        // Change the button to a 'Save' button
         button.textContent = 'Save';
         button.onclick = function() {
           saveReply(button, textArea);
         };
       }
-  
+
       function saveReply(button, textArea) {
         const newText = textArea.value.trim();
         if (newText) {
@@ -395,28 +395,19 @@
           };
         }
       }
+
+      function postQuery() {
+        const queryText = document.getElementById("post-query-text").value;
+        if (queryText.trim()) {
+          const postedQuerySection = document.getElementById("posted-query-section");
+          const newQuery = document.createElement('div');
+          newQuery.classList.add('query');
+          newQuery.innerHTML = `<p><strong>You:</strong> ${queryText}</p>`;
+          postedQuerySection.appendChild(newQuery);
+          
+          document.getElementById("post-query-text").value = ''; 
+        }
+      }
     </script>
-        </div>
-        <footer class="footer">
-          <div class="footer-content">
-            <ul class="footer-links">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">About Us</a></li>
-            </ul>
-            <div class="footer-icons">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="contact-info">
-              <p>EduAssess, 1234 Edu St., Learning City, LC</p>
-              <p>Phone: (123) 456-7890</p>
-              <p>Email: contact@eduassess.com</p>
-            </div>
-          </div>
-        </footer>
-    
 </body>
 </html>

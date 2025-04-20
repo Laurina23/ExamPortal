@@ -32,7 +32,6 @@
       gap: 20px;
     }
 
-    
     .navbar {
       background-color: #000;
       width: 100%;
@@ -72,7 +71,6 @@
       margin-left: 20px;
     }
 
-    
     .uploaded-files {
       flex: 2;
       background-color: #ffffff;
@@ -91,7 +89,6 @@
       border-radius: 5px;
     }
 
-    
     .search-bar {
       display: flex;
       align-items: center;
@@ -164,7 +161,6 @@
       background-color: #7b1381;
     }
 
-    
     .upload-section {
       flex: 1;
       background-color: #ffffff;
@@ -282,24 +278,20 @@
 
   <div class="container">
     
-    <div class="uploaded-files">
+    <div class="uploaded-files" id="file-list">
       <div class="search-bar">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search Repository...">
+        <input type="text" id="search-file" placeholder="Search Repository...">
       </div>
-      <div class="file">
-        <h3>Sample File 1</h3>
-        <p>Uploaded by: User1</p>
-        <button class="download-button">Download</button>
-      </div>
+      <!-- Uploaded files will be displayed here -->
     </div>
 
     <div class="upload-section">
       <h2>Upload Your File</h2>
       <input type="text" placeholder="Enter file name..." id="file-name">
-      <textarea placeholder="File description..."></textarea>
-      <input type="file" accept="*">
-      <button>Upload File</button>
+      <textarea placeholder="File description..." id="file-description"></textarea>
+      <input type="file" id="file-input" accept="*">
+      <button id="upload-button">Upload File</button>
     </div>
   </div>
 
@@ -324,6 +316,59 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const fileList = document.getElementById('file-list');
+    const uploadButton = document.getElementById('upload-button');
+    const fileNameInput = document.getElementById('file-name');
+    const fileDescriptionInput = document.getElementById('file-description');
+    const fileInput = document.getElementById('file-input');
+  
+    uploadButton.addEventListener('click', () => {
+      const fileName = fileNameInput.value.trim();
+      const fileDescription = fileDescriptionInput.value.trim();
+      const file = fileInput.files[0];
+  
+      if (!fileName || !fileDescription || !file) {
+        alert('Please fill in all fields and select a file.');
+        return;
+      }
+  
+      // Create the file card element
+      const fileDiv = document.createElement('div');
+      fileDiv.classList.add('file');
+  
+      const fileNameElement = document.createElement('h3');
+      fileNameElement.textContent = fileName;
+      fileDiv.appendChild(fileNameElement);
+  
+      const fileDescriptionElement = document.createElement('p');
+      fileDescriptionElement.textContent = `Description: ${fileDescription}`;
+      fileDiv.appendChild(fileDescriptionElement);
+  
+      // Create a "Download" button
+      const downloadButton = document.createElement('button');
+      downloadButton.classList.add('download-button');
+      downloadButton.textContent = 'Download';
+      downloadButton.addEventListener('click', () => {
+        const fileURL = URL.createObjectURL(file);
+        const anchor = document.createElement('a');
+        anchor.href = fileURL;
+        anchor.download = fileName;
+        anchor.click();
+      });
+      fileDiv.appendChild(downloadButton);
+  
+      // Append the file card to the uploaded files section
+      fileList.appendChild(fileDiv);
+  
+      // Clear inputs after upload
+      fileNameInput.value = '';
+      fileDescriptionInput.value = '';
+      fileInput.value = '';
+    });
+  </script>
+  
 
 </body>
 </html>

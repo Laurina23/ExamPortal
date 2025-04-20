@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Added styles for centering welcome text */
         .nav-content {
             display: flex;
             justify-content: space-between;
@@ -34,7 +33,6 @@
             <div class="search-container">
                 <input type="text" class="search-bar" placeholder="Search..." id="searchBar">
             </div>
-            <!-- Centered Welcome Message -->
             <div id="userNameContainer" class="user-name-container">
                 <p id="userName">WELCOME</p>
             </div>
@@ -67,7 +65,7 @@
 
     <div class="main-container">
         <div class="main-content">
-            <img src="https://www.merittrac.com/sites/default/files/Solutions_ExamAdmin_hero_1.jpg" alt="Homepage Image" width="930px">
+            <img src="ss.png" alt="Homepage Image" width="930px">
             <h2>Our Services</h2>
             <p>EduAssess is your all-in-one academic platform designed to support your educational journey. Our features include MyWall, a personalized dashboard where you can track your progress, save valuable resources, and organize your learning goals.<br>The Repository offers an extensive library of study materials, guides, and reference documents to enhance your knowledge.<br> Engage with a community of learners on our Forum, where you can ask questions, participate in discussions, and gain insights from peers. Additionally, the Online Examination section allows you to take secure practice tests and assessments, helping you monitor your performance and improve over time. At EduAssess, we're dedicated to providing the resources and tools you need to succeed in a collaborative and interactive environment.</p>
         </div>
@@ -77,7 +75,7 @@
                 <h1>Welcome to EduAssess</h1>
                 <form>
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">Email</label>
                         <input type="text" id="username" name="username" required>
                     </div>
                     <div class="form-group">
@@ -134,19 +132,17 @@
 
         const logoutButton = document.getElementById("logoutButton");
 
-        // Display WELCOME on successful login
         onAuthStateChanged(auth, (user) => {
             const userNameElement = document.getElementById("userName");
             if (user) {
                 userNameElement.textContent = "WELCOME";
-                logoutButton.style.display = "block"; // Show logout button
+                logoutButton.style.display = "block"; 
             } else {
                 userNameElement.textContent = "";
-                logoutButton.style.display = "none"; // Hide logout button
+                logoutButton.style.display = "none"; 
             }
         });
 
-        // Login functionality
         document.getElementById("loginButton").addEventListener("click", (e) => {
             e.preventDefault();
             const email = document.getElementById("username").value;
@@ -156,7 +152,6 @@
                 .catch((error) => alert("Error: " + error.message));
         });
 
-        // Logout functionality
         logoutButton.addEventListener("click", () => {
             signOut(auth)
                 .then(() => alert("Logged out successfully"))

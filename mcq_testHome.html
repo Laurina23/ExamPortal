@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MCQ Exam Instructions</title>
+    <title>MCQ Exam Instructions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         html, body {
@@ -216,8 +216,6 @@
         </ul>
     </div>
 
-    
-
     <div class="container">
         <div class="heading">MCQ Exam Instructions</div>
 
@@ -252,7 +250,7 @@
             </div>
         </div>
 
-        <button class="start-button">START TEST</button>
+        <button class="start-button" onclick="startTest()">START TEST</button>
     </div>
 
     <footer class="footer">
@@ -276,6 +274,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function startTest() {
+            const subject = document.getElementById("subjects").value;
+            if (subject) {
+                localStorage.setItem("selectedSubject", subject);
+                window.location.href = "mcq.html";
+            } else {
+                alert("Please select a subject before starting the test!");
+            }
+        }
+    </script>
+
 
 </body>
 </html>
