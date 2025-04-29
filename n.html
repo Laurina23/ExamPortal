@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f3f4f6, #ffffff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #6c63ff;
+            object-fit: cover;
+        }
+
+        .header h2 {
+            margin: 10px 0 5px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .details {
+            margin-top: 30px;
+        }
+
+        .details .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .details .detail-item label {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .details .detail-item span,
+        .details .detail-item input,
+        .details .detail-item textarea {
+            font-size: 14px;
+            color: #555;
+            flex: 2;
+            text-align: right;
+        }
+
+        .details .detail-item input,
+        .details .detail-item textarea {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px;
+            width: 70%;
+            display: none;
+        }
+
+        .details .detail-item input[type="password"] {
+            width: 80%;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skills ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 10px;
+        }
+
+        .skills ul li {
+            background: linear-gradient(135deg, #6c63ff, #3f3dff);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .edit-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .edit-button button {
+            background: #6c63ff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .edit-button button:hover {
+            background: #3f3dff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Default profile image -->
+            <img id="profile-picture" src="https://cdn.vectorstock.com/i/1000v/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" alt="Default Profile Picture">
+            <h2 id="name-display">Sanjay</h2>
+            <p id="branch-display">Computer Science</p>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <label for="id">ID:</label>
+                <span id="id-display">123456</span>
+                <input type="text" id="id-input" value="123456">
+            </div>
+            <div class="detail-item">
+                <label for="dob">DOB:</label>
+                <span id="dob-display">2001-01-01</span>
+                <input type="date" id="dob-input" value="2001-01-01">
+            </div>
+            <div class="detail-item">
+                <label for="email">Email:</label>
+                <span id="email-display">sanjay23@gmail.com</span>
+                <input type="email" id="email-input" value="johndoe@example.com">
+            </div>
+            <div class="detail-item">
+                <label for="age">Age:</label>
+                <span id="age-display">23</span>
+                <input type="number" id="age-input" value="23">
+            </div>
+            <div class="detail-item">
+                <label for="gender">Gender:</label>
+                <span id="gender-display">Male</span>
+                <input type="text" id="gender-input" value="Male">
+            </div>
+            <div class="detail-item">
+                <label for="college-address">College Address:</label>
+                <span id="address-display">silcion university</span>
+                <textarea id="address-input">patia</textarea>
+            </div>
+            <div class="detail-item">
+                <label for="branch">Branch:</label>
+                <span id="branch-display-detail">Computer Science</span>
+                <input type="text" id="branch-input" value="Computer Science">
+            </div>
+            <div class="detail-item">
+                <label for="password">Password:</label>
+                <span id="password-display">********</span>
+                <input type="password" id="password-input" value="password123">
+            </div>
+        </div>
+
+        <div class="skills">
+            <h3>Technical Skills</h3>
+            <ul id="skills-display">
+                <li>C</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>JSP</li>
+            </ul>
+        </div>
+
+        <div class="edit-button">
+            <button id="edit-button">Edit Profile</button>
+        </div>
+    </div>
+
+    <script>
+        const editButton = document.getElementById('edit-button');
+        const displayElements = document.querySelectorAll('span, textarea');
+        const inputElements = document.querySelectorAll('input, textarea');
+
+        let isEditing = false;
+
+        editButton.addEventListener('click', () => {
+            isEditing = !isEditing;
+
+            displayElements.forEach((element) => {
+                const input = element.nextElementSibling;
+                if (input) {
+                    input.style.display = isEditing ? 'inline' : 'none';
+                    element.style.display = isEditing ? 'none' : 'inline';
+                }
+            });
+
+            if (!isEditing) {
+                document.getElementById('name-display').textContent = document.getElementById('id-input').value;
+                document.getElementById('id-display').textContent = document.getElementById('id-input').value;
+                document.getElementById('dob-display').textContent = document.getElementById('dob-input').value;
+                document.getElementById('email-display').textContent = document.getElementById('email-input').value;
+                document.getElementById('age-display').textContent = document.getElementById('age-input').value;
+                document.getElementById('gender-display').textContent = document.getElementById('gender-input').value;
+                document.getElementById('address-display').textContent = document.getElementById('address-input').value;
+                document.getElementById('branch-display').textContent = document.getElementById('branch-input').value;
+                document.getElementById('branch-display-detail').textContent = document.getElementById('branch-input').value;
+                document.getElementById('password-display').textContent = "********";
+            }
+
+            editButton.textContent = isEditing ? 'Save Changes' : 'Edit Profile';
+        });
+    </script>
+</body>
+</html>

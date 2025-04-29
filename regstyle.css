@@ -7,6 +7,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #d5dbdd;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/025/547/454/non_2x/study-doodle-background-vector.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     display: flex;
     flex-direction: column;
     align-items: center;

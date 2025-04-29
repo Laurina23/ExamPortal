@@ -6,6 +6,34 @@
     <title>Student Registration</title>
     <link rel="stylesheet" href="regstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+    function validateForm() {
+        let form = document.forms["form"];
+        let name = form["name"].value.trim();
+        let email = form["email"].value.trim();
+        let age = form["age"].value;
+        let gender = form["gender"];
+        let isGenderSelected = Array.from(gender).some(g => g.checked);
+        if (name === "") {
+            alert("Name must be filled out");
+            return false;
+        }
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(email)) {
+            alert("Please enter a valid email address");
+            return false;
+        }
+        if (age === "" || isNaN(age) || age <= 0 || age > 100) {
+            alert("Please enter a valid age between 1 and 100");
+            return false;
+        }
+        if (!isGenderSelected) {
+            alert("Please select your gender");
+            return false;
+        }
+        return true; 
+    }
+    </script>
 </head>
 <body>
     <div class="navbar">
@@ -16,7 +44,7 @@
             <li><a href="MyWall.html">My Wall</a></li>
             <li><a href="e-repository.html">E-Repository</a></li>
             <li><a href="forum.html">Open Forum</a></li>
-            <li><a href="e-exam">E-Exam</a></li>
+            <li><a href="e-exam.html">E-Exam</a></li>
             <li><a href="logout.html">Logout</a></li>
         </ul>
     </div>
@@ -25,48 +53,49 @@
         
         <div class="flex-container">
             <div class="left-column">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" placeholder="Enter your name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="id">ID:</label>
-                    <input type="text" id="id" placeholder="Enter your ID">
-                </div>
-    
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Enter your email">
-                </div>
-    
-                <div class="form-group">
-                    <label for="age">Age:</label>
-                    <input type="number" id="age" placeholder="Enter your age">
-                </div>
-    
-                <div class="form-group">
-                    <label>Gender:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="gender" value="male"> Male
-                        <input type="radio" name="gender" value="female"> Female
+                <form name="form" action="/action_page.php" onsubmit="return validateForm()" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
                     </div>
-                </div>
-    
-                <div class="form-group">
-                    <label for="address">College Address:</label>
-                    <textarea id="address" placeholder="Enter your college address"></textarea>
-                </div>
-    
-                <div class="form-group">
-                    <label for="branch">Branch:</label>
-                    <select id="branch">
-                        <option>Computer Science</option>
-                        <option>Information Technology</option>
-                        <option>Electronics and Communication</option>
-                        <option>Electrical and Electronics</option>
-                    </select>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" id="id" name="id" placeholder="Enter your ID">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" placeholder="Enter your age">
+                    </div>
+        
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="male"> Male
+                            <input type="radio" id="female" name="gender" value="female"> Female
+                        </div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="address">College Address:</label>
+                        <textarea id="address" name="address" placeholder="Enter your college address"></textarea>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="branch">Branch:</label>
+                        <select id="branch" name="branch">
+                            <option>Computer Science</option>
+                            <option>Information Technology</option>
+                            <option>Electronics and Communication</option>
+                            <option>Electrical and Electronics</option>
+                        </select>
+                    </div>
             </div>
             
             <div class="right-column">
@@ -79,24 +108,34 @@
                         <input type="checkbox" name="skills" value="jsp"> JSP
                     </div>
                 </div>
-    
+        
                 <div class="form-group">
                     <label for="other-skills">Other Technical Skills:</label>
-                    <textarea id="other-skills" placeholder="Enter any other technical skills"></textarea>
+                    <textarea id="other-skills" name="other-skills" placeholder="Enter any other technical skills"></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="resume">Upload Resume:</label>
+                    <input type="file" id="resume">
+                </div>
+    
+                <div class="form-group">
+                    <label for="photo">Upload Photo:</label>
+                    <input type="file" id="photo">
                 </div>
     
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" placeholder="Enter your password">
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
                 </div>
             </div>
         </div>
-        
         <div class="form-actions">
-            <button class="btn-primary">Submit</button>
-            <button class="btn-secondary">Reset</button>
+            <button class="btn-primary" type="submit">Submit</button>
+            <button class="btn-secondary" type="reset">Reset</button>
         </div>
     </div>
+</form>
     <footer class="footer">
         <div class="footer-content">
             <ul class="footer-links">
