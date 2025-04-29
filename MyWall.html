@@ -4,72 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Wall</title>
-    <link rel="stylesheet" href="mywallstyle.css">
+    <link rel="stylesheet" href="regstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="form-container">
-        <h1>MyWall</h1>
-        
-        <div class="form-group">
-            <label for="profile-photo">Profile Image:</label>
-            <input type="file" id="profile-photo">
+    <div class="navbar">
+        <div class="logo">
+            <a href="homepage.html">EduAssess</a>
         </div>
+        <ul>
+            <li><a href="MyWall.html">My Wall</a></li>
+            <li><a href="e-repository.html">E-Repository</a></li>
+            <li><a href="forum.html">Open Forum</a></li>
+            <li><a href="e-exam">E-Exam</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+        <div id="top-right-photo">
+            <img id="profile-preview" src="#" alt="Profile Photo" style="width: 50px; height: 50px; border-radius: 50%;">
+        </div>
+    </div>
 
+    <div class="form-container">
+        <h1>My Wall</h1>
+        
         <div class="flex-container">
             <div class="left-column">
                 <div class="form-group">
-                    <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" placeholder="Enter your first name">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" disabled>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="last-name">Last Name:</label>
-                    <input type="text" id="last-name" placeholder="Enter your middle name">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" disabled>
                 </div>
-
+    
                 <div class="form-group">
-                    <label for="dob">Date of Birth (DOB):</label>
-                    <input type="date" id="dob">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" disabled>
                 </div>
-
+    
                 <div class="form-group">
-                    <label for="address">Address:</label>
-                    <textarea id="address" placeholder="Enter your address"></textarea>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" disabled>
                 </div>
-
+    
                 <div class="form-group">
-                    <label for="parents-name">Parents' Name:</label>
-                    <input type="text" id="parents-name" placeholder="Enter your parents' name">
+                    <label>Gender:</label>
+                    <div class="radio-group">
+                        <input type="radio" name="gender" value="male" disabled> Male
+                        <input type="radio" name="gender" value="female" disabled> Female
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="address">College Address:</label>
+                    <textarea id="address" disabled></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="branch">Branch:</label>
+                    <select id="branch" disabled>
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Electronics and Communication</option>
+                        <option>Electrical and Electronics</option>
+                    </select>
                 </div>
             </div>
             
             <div class="right-column">
                 <div class="form-group">
-                    <label for="hobbies">Hobbies:</label>
-                    <textarea id="hobbies" placeholder="Enter your hobbies"></textarea>
+                    <label>Technical Skills:</label>
+                    <div class="skills">
+                        <input type="checkbox" name="skills" value="c" disabled> C
+                        <input type="checkbox" name="skills" value="java" disabled> Java
+                        <input type="checkbox" name="skills" value="python" disabled> Python
+                        <input type="checkbox" name="skills" value="jsp" disabled> JSP
+                    </div>
                 </div>
-
+    
                 <div class="form-group">
-                    <label for="qualification">Qualification:</label>
-                    <input type="text" id="qualification" placeholder="Enter your qualification">
+                    <label for="other-skills">Other Technical Skills:</label>
+                    <textarea id="other-skills" disabled></textarea>
                 </div>
-
+    
+                <!-- Resume Upload Functionality -->
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Enter your email">
+                    <label for="resume">Resume:</label>
+                    <input type="file" id="resume-upload" accept=".pdf">
+                    <a id="resume-link" href="#" target="_blank" style="display: none;">Download Resume</a>
                 </div>
-
+                
+                <!-- Profile Picture Upload Functionality -->
                 <div class="form-group">
-                    <label for="skills">Skills:</label>
-                    <input type="text" id="skills" placeholder="Enter your skills">
+                    <label for="photo">Profile Photo:</label>
+                    <input type="file" id="photo-upload" accept="image/*">
+                    <img id="profile-photo" src="#" alt="Profile Photo" style="width: 150px; height: 150px; margin-top: 10px; display: none;">
                 </div>
             </div>
         </div>
         
         <div class="form-actions">
-            <button class="btn-primary">Edit</button>
-            <button class="btn-secondary">Save</button>
+            <button class="btn-primary" onclick="editProfile()">Edit Profile</button>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <div class="footer-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+    
+            <div class="contact-info">
+                <p>Contact Us: support@eduassess.com | +91-993413903</p>
+                <p>© 2024 EduAssess. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyC00aEnkaLBbQcssbns-qYh8lQ3PAuDSno",
+            authDomain: "examportal-703fd.firebaseapp.com",
+            projectId: "examportal-703fd",
+            storageBucket: "examportal-703fd.appspot.com",
+            messagingSenderId: "851987579538",
+            appId: "1:851987579538:web:2c7d1b3a2d39f77e4b1c4b"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+    
+        async function fetchStudentData(docId) {
+            try {
+                const studentRef = doc(db, "students", docId);
+                const studentSnap = await getDoc(studentRef);
+    
+                if (studentSnap.exists()) {
+                    const studentData = studentSnap.data();
+    
+                    document.getElementById("name").value = studentData.name || '';
+                    document.getElementById("id").value = studentData.studentId || '';
+                    document.getElementById("email").value = studentData.email || '';
+                    document.getElementById("age").value = studentData.age || '';
+    
+                    if (studentData.gender) {
+                        const genderRadio = document.querySelector(`input[name="gender"][value="${studentData.gender}"]`);
+                        if (genderRadio) genderRadio.checked = true;
+                    }
+    
+                    document.getElementById("address").value = studentData.address || '';
+                    document.getElementById("branch").value = studentData.branch || '';
+    
+                    if (studentData.skills && Array.isArray(studentData.skills)) {
+                        studentData.skills.forEach(skill => {
+                            const skillCheckbox = document.querySelector(`input[name="skills"][value="${skill}"]`);
+                            if (skillCheckbox) skillCheckbox.checked = true;
+                        });
+                    }
+    
+                    document.getElementById("other-skills").value = studentData.otherSkills || '';
+    
+                    if (studentData.profilePhotoUrl) {
+                        document.getElementById("profile-photo").src = studentData.profilePhotoUrl;
+                        document.getElementById("profile-preview").src = studentData.profilePhotoUrl;
+                        document.getElementById("profile-photo").style.display = 'block';
+                    }
+    
+                    if (studentData.resumeUrl) {
+                        const resumeLink = document.getElementById("resume-link");
+                        resumeLink.href = studentData.resumeUrl;
+                        resumeLink.style.display = 'inline';
+                    }
+    
+                } else {
+                    console.error("No such document!");
+                    alert("Student not found!");
+                }
+            } catch (error) {
+                console.error("Error fetching student data:", error);
+                alert("Failed to fetch student data.");
+            }
+        }
+    
+        document.getElementById('resume-upload').addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const fileRef = ref(storage, `resumes/${file.name}`);
+                await uploadBytes(fileRef, file);
+                const fileUrl = await getDownloadURL(fileRef);
+                const resumeLink = document.getElementById('resume-link');
+                resumeLink.href = fileUrl;
+                resumeLink.style.display = 'inline';
+            }
+        });
+    
+        document.getElementById('photo-upload').addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const previewImage = document.getElementById('profile-photo');
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block'; 
+                };
+                reader.readAsDataURL(file);
+
+                const fileRef = ref(storage, `profile-photos/${file.name}`);
+                await uploadBytes(fileRef, file);
+                const fileUrl = await getDownloadURL(fileRef);
+
+                document.getElementById('profile-photo').src = fileUrl;
+                document.getElementById('profile-preview').src = fileUrl;
+            }
+        });
+    
+        fetchStudentData("32hgyu67");
+    </script>
 </body>
 </html>

@@ -3,72 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduAssess</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="regstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+    function validateForm() {
+        let form = document.forms["form"];
+        let name = form["name"].value.trim();
+        let email = form["email"].value.trim();
+        let age = form["age"].value;
+        let gender = form["gender"];
+        let isGenderSelected = Array.from(gender).some(g => g.checked);
+        if (name === "") {
+            alert("Name must be filled out");
+            return false;
+        }
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(email)) {
+            alert("Please enter a valid email address");
+            return false;
+        }
+        if (age === "" || isNaN(age) || age <= 0 || age > 100) {
+            alert("Please enter a valid age between 1 and 100");
+            return false;
+        }
+        if (!isGenderSelected) {
+            alert("Please select your gender");
+            return false;
+        }
+        return true; 
+    }
+    </script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="nav-content">
-            <h1>EduAssess</h1>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search..." id="searchBar">
+    <div class="navbar">
+        <div class="logo">
+            <a href="homepage.html">EduAssess</a>
+        </div>
+        <ul>
+            <li><a href="MyWall.html">My Wall</a></li>
+            <li><a href="e-repository.html">E-Repository</a></li>
+            <li><a href="forum.html">Open Forum</a></li>
+            <li><a href="e-exam.html">E-Exam</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </div>
+    <div class="form-container">
+        <h1>Student Registration</h1>
+        
+        <div class="flex-container">
+            <div class="left-column">
+                <form name="form" action="/action_page.php" onsubmit="return validateForm()" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" id="id" name="id" placeholder="Enter your ID">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" placeholder="Enter your age">
+                    </div>
+        
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="male"> Male
+                            <input type="radio" id="female" name="gender" value="female"> Female
+                        </div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="address">College Address:</label>
+                        <textarea id="address" name="address" placeholder="Enter your college address"></textarea>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="branch">Branch:</label>
+                        <select id="branch" name="branch">
+                            <option>Computer Science</option>
+                            <option>Information Technology</option>
+                            <option>Electronics and Communication</option>
+                            <option>Electrical and Electronics</option>
+                        </select>
+                    </div>
             </div>
-        </div>
-    </header>
-
-    <nav class="nav-links">
-        <div class="nav-card">
-            <img src="https://media.istockphoto.com/id/1334913081/vector/terms-and-conditions-concept-people-signing-document-protecting-personal-data-checking.jpg?s=612x612&w=0&k=20&c=rTNDgigtzTpqzdOE2Nvxr5tk7U2kAf4jcTTU3M3kISA=" alt="MyWall">
-            <a href="MyWall.html">MyWall</a>
-            <p>Your personal academic dashboard</p>
-        </div>
-        <div class="nav-card">
-            <img src="https://media.istockphoto.com/id/1305298859/vector/alt-tag-optimization-abstract-concept-vector-illustration.jpg?s=612x612&w=0&k=20&c=qPmOCffEDJ_-2wJp91j8mCVuJ6zwUjaUNotV6Wpxj4g=" alt="Repository">
-            <a href="e-repository.html">e-Repository</a>
-            <p>Access a wide range of learning materials</p>
-        </div>
-        <div class="nav-card">
-            <img src="https://cdni.iconscout.com/illustration/premium/thumb/internet-discussion-forum-illustration-download-in-svg-png-gif-file-formats--message-chat-communication-pack-network-illustrations-5167741.png?f=webp" alt="Forum">
-            <a href="forum.html">OpenForum</a>
-            <p>Engage in discussions with fellow learners</p>
-        </div>
-        <div class="nav-card">
-            <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-exam-illustration-download-in-svg-png-gif-file-formats--paper-test-quiz-questionnaire-e-learning-pack-school-education-illustrations-5127256.png?f=webp" alt="Online Examination">
-            <a href="examHome.html">e-Exam</a>
-            <p>Take practice tests and assessments</p>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <div class="main-content">
-            <img src="https://www.merittrac.com/sites/default/files/Solutions_ExamAdmin_hero_1.jpg" alt="Homepage Image" width="930px">
-            <h2>Our Services</h2>
-            <p>EduAssess is your all-in-one academic platform designed to support your educational journey. Our features include MyWall, a personalized dashboard where you can track your progress, save valuable resources, and organize your learning goals.<br>The Repository offers an extensive library of study materials, guides, and reference documents to enhance your knowledge.<br> Engage with a community of learners on our Forum, where you can ask questions, participate in discussions, and gain insights from peers. Additionally, the Online Examination section allows you to take secure practice tests and assessments, helping you monitor your performance and improve over time. At EduAssess, we’re dedicated to providing the resources and tools you need to succeed in a collaborative and interactive environment.</p>
-        </div>
-
-        <div class="container">
-            <div class="auth-card">
-                <h1>Welcome to EduAssess</h1>
-                <form>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
+            
+            <div class="right-column">
+                <div class="form-group">
+                    <label>Technical Skills:</label>
+                    <div class="skills">
+                        <input type="checkbox" name="skills" value="c"> C
+                        <input type="checkbox" name="skills" value="java"> Java
+                        <input type="checkbox" name="skills" value="python"> Python
+                        <input type="checkbox" name="skills" value="jsp"> JSP
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-                <div class="register-link">
-                    New to EduAssess? <a href="registration.html">Register here</a>
+                </div>
+        
+                <div class="form-group">
+                    <label for="other-skills">Other Technical Skills:</label>
+                    <textarea id="other-skills" name="other-skills" placeholder="Enter any other technical skills"></textarea>
+                </div>
+        
+                <div class="form-group">
+                    <label for="resume">Upload Resume:</label>
+                    <input type="file" id="resume" name="resume">
+                </div>
+        
+                <div class="form-group">
+                    <label for="photo">Upload Photo:</label>
+                    <input type="file" id="photo" name="photo">
+                </div>
+        
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
                 </div>
             </div>
         </div>
+        <div class="form-actions">
+            <button class="btn-primary" type="submit">Submit</button>
+            <button class="btn-secondary" type="reset">Reset</button>
+        </div>
     </div>
-
+</form>
     <footer class="footer">
         <div class="footer-content">
             <ul class="footer-links">
@@ -91,26 +158,5 @@
             </div>
         </div>
     </footer>
-    
-    <script>
-        document.getElementById("searchBar").addEventListener("keydown", function(event) {
-            if (event.key === 'Enter') {
-                var query = document.getElementById("searchBar").value.toLowerCase();
-
-                var searchMapping = {
-                    "mywall": "MyWall.html",
-                    "repository": "e-repository.html",
-                    "forum": "forum.html",
-                    "exam": "examHome.html"
-                };
-
-                if (searchMapping[query]) {
-                    window.location.href = searchMapping[query];
-                } else {
-                    alert("No matching page found for your search.");
-                }
-            }
-        });
-    </script>
 </body>
 </html>
